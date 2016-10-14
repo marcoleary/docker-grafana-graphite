@@ -2,6 +2,7 @@ version: '2'
 services:
   grafana_graphite:
     build: .
+    restart: always
     image: kamon/grafana_graphite
     container_name: kamon-grafana-dashboard
     ports:
@@ -9,6 +10,7 @@ services:
       - '81:81'
       - '8125:8125/udp'
       - '8126:8126'
+      - '2003':'2003'
     volumes:
       - ./data/whisper:/opt/graphite/storage/whisper
       - ./data/grafana:/opt/grafana/data
