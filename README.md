@@ -1,4 +1,4 @@
-StatsD + Graphite + Grafana 2 + Kamon Dashboards
+StatsD + Graphite + Grafana 4 + Kamon Dashboards
 ---------------------------------------------
 
 This image contains a sensible default configuration of StatsD, Graphite and Grafana, and comes bundled with a example
@@ -13,6 +13,7 @@ need as a prerequisite is having `docker`, `docker-compose`, and `make` installe
 
 - `80`: the Grafana web interface.
 - `81`: the Graphite web port
+- `2003`: the Graphite data port
 - `8125`: the StatsD port.
 - `8126`: the StatsD administrative port.
 
@@ -45,16 +46,18 @@ ports to whatever you want by changing left side number in the `--publish` param
 
 The Dockerfile and supporting configuration files are available in our [Github repository](https://github.com/kamon-io/docker-grafana-graphite).
 This comes specially handy if you want to change any of the StatsD, Graphite or Grafana settings, or simply if you want
-to know how tha image was built. The repo also has `build` and `start` scripts to make your workflow more pleasant.
+to know how the image was built.
 
 
 ### Using the Dashboards ###
 
 Once your container is running all you need to do is:
-- open your browser pointing to the host/port you just published
+
+- open your browser pointing to http://localhost:80 (or another port if you changed it)
+  - Docker with VirtualBox on macOS: use `docker-machine ip` instead of `localhost`
 - login with the default username (admin) and password (admin)
-- configure a new datasource to point at the Graphite metric data (URL - http://localhost:8000) and replace the default Grafana test datasource for your graphs
-- then play with the dashboard at your wish...
+- open existing dashboard (or create a new one) and select 'Local Graphite' datasource
+- play with the dashboard at your wish...
 
 
 ### Persisted Data ###
